@@ -1,4 +1,4 @@
-package com.softspace.payment.common.util;
+package com.payment.common.util;
 
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
