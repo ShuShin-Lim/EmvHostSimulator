@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<session-config>
+		<session-timeout>10</session-timeout>
+		<!-- commented out for WAS deployment -->
+		<!-- <cookie-config> <http-only>true</http-only> </cookie-config> -->
+	</session-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>restricted methods</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>TRACE</http-method>
+			<http-method>PUT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>PATCH</http-method>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/spring/appServlet/servlet-context.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+		<async-supported>true</async-supported>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>504</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>505</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.servlet.ServletException</exception-type>
+		<location>/</location>
+	</error-page>
+	<error-page>
+		<exception-type>Exception</exception-type>
+		<location>/</location>
+	</error-page>
+</web-app>

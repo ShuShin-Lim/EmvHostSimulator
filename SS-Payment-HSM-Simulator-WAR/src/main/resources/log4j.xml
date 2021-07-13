@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="fileLog" class="com.softspace.payment.common.util.CustomDailyRollingFileAppender">
+		<!-- /mpos/hsmsimulator/logs/hsmsimulator.log -->
+		<param name="File" value="${log.path}" />
+		<param name="datePattern" value="'_'dd-yyyy-MM'.log'" />
+		<param name="MaxFileSize" value="5MB" />
+		<param name="MaxBackupIndex" value="20" />
+		<param name="maxBackupDayIndex" value="14" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d [%t] %p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd MMM yyyy HH:mm:ss} %-5p [%15.15t] (%F:%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- Application Loggers -->
+	<logger name="com.softspace">
+		<level value="debug" />
+	</logger>
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.springframework.beans">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.springframework.context">
+		<level value="warn" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="warn" />
+	</logger>
+
+	<!-- stdout -->
+	<logger name="stdout">
+		<level value="info" />
+	</logger>
+
+	<!-- stderr -->
+	<logger name="stderr">
+		<level value="error" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="fileLog" />
+	</root>
+
+</log4j:configuration>
